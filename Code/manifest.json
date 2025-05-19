@@ -1,0 +1,32 @@
+{
+    "manifest_version": 3,
+    "name": "JSsie",
+    "version": "1.0",
+    "description": "Scans for risky JavaScript usage on visited pages.",
+    "permissions": ["scripting", "activeTab", "storage"],
+    "action": {
+      "default_popup": "popup.html",
+      "default_icon": {
+        "16": "js LOGO 16.png",
+        "48": "js LOGO 48.png",
+        "128": "js LOGO 128.png"
+      }
+    },
+    "background": {
+      "service_worker": "background.js"
+    },
+    "content_scripts": [
+      {
+        "matches": ["<all_urls>"],
+        "js": [
+          "patterns/info.js",
+          "patterns/warn.js",
+          "patterns/risk.js",
+          "patterns/threat.js",
+          "content.js"     
+        ],
+        "run_at": "document_idle"
+      }
+    ]
+  }
+  
